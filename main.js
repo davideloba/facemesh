@@ -12,12 +12,8 @@ let height = window.innerHeight
 
 videoElement.width = width;
 videoElement.height = height;
-// canvasElement.style.position = "absolute";
-// canvasElement.style.top = "0";
-// canvasElement.style.left = "0";
 canvasElement.width = width;
 canvasElement.height = height;
-// canvasElement.style.transform = "scale(-1, 1)";
 
 
 const getCaptureFrame = async () => {
@@ -47,7 +43,7 @@ const camera = new Camera(videoElement, {
         let image = await getCaptureFrame()
         faceMeshWorker.postMessage(image);
     },
-    width: 1280,
-    height: 720
+    width: width,
+    height: height
 });
 camera.start();

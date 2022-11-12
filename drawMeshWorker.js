@@ -2,8 +2,6 @@ self.importScripts('https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawin
 self.importScripts('face_mesh.js');
 
 function onResults(results) {
-    // console.log('devo disegnare la mesh');
-
     const canvasCtx = canvasElement.getContext('2d');
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
@@ -23,7 +21,6 @@ function onResults(results) {
         }
     }
     canvasCtx.restore();
-    currentStatus = statusEnum.Idle;
 }
 
 let canvasElement = null;
@@ -49,13 +46,14 @@ onmessage = async e => {
             if (e.data) {
                 currentStatus = statusEnum.Running;
                 onResults(results = { ...e.data });
+                currentStatus = statusEnum.Idle;
             }
             break;
 
         case statusEnum.Init:
         case statusEnum.Running:
             //do nothing
-            console.log('################ draw lost!');
+            console.log(currentStatus, 'draw missed');
             break;
 
         default:

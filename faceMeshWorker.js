@@ -27,7 +27,7 @@ onmessage = async e => {
         case statusEnum.Init:
         case statusEnum.Running:
             //do nothing
-            console.log(currentStatus, 'frame lost');
+            console.log(currentStatus, 'frame missed');
             break;
 
         default:
